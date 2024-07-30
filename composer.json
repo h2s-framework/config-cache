@@ -1,0 +1,23 @@
+{
+  "name": "siarkowodor/config-cache",
+  "description": "Library for caching configs",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "version": "0.1.0",
+  "type": "library",
+  "authors": [
+    {
+      "name": "H2S",
+      "email": "mateusz@siarko.pl"
+    }
+  ],
+  "require": {
+    "siarkowodor/config-files": "*",
+    "siarkowodor/cache-files": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Siarko\\ConfigCache\\": "src/"
+    }
+  }
+}

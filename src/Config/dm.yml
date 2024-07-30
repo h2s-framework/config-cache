@@ -1,0 +1,43 @@
+id: Siarko.ConfigCache.default
+
+depends:
+  - Siarko.ConfigFiles.default
+
+types:
+  # interface preferences
+  \Siarko\ConfigCache\Api\Provider\CachedConfigProviderInterface: \Siarko\ConfigCache\Provider\CachedConfigProvider
+
+  #virtual types
+  V\Siarko\ConfigCache\Commands\DirectoryProvider: !new \Siarko\Paths\Provider\AbsolutePathProvider
+  #virtual types for default config
+  V\Siarko\ConfigCache\Default\FileExtensionProvider: !new \Siarko\ConfigFiles\Provider\ConfigFileExtensionProvider
+  V\Siarko\ConfigCache\Default\CachedConfigProvider: !new \Siarko\ConfigCache\Api\Provider\CachedConfigProviderInterface
+  V\Siarko\ConfigCache\Default\CacheDirectoryProvider: !new \Siarko\Paths\Provider\ProjectPathProvider
+  V\Siarko\ConfigCache\Default\Cache: !new \Siarko\CacheFiles\Api\CacheSetInterface
+
+arguments:
+  # CLI Command path configuration
+  V\Siarko\ConfigCache\Commands\DirectoryProvider:
+    path: __DIR__/../Commands
+  \Siarko\Paths\Provider\Pool\PathProviderPool:
+    providers:
+      command:
+        - V\Siarko\ConfigCache\Commands\DirectoryProvider
+
+  # default config provider
+  # Set acceptable extensions for translation files
+  V\Siarko\ConfigCache\Default\FileExtensionProvider:
+    extensions: [yml, yaml]
+  # configure where cached config files will be stored
+  V\Siarko\ConfigCache\Default\CacheDirectoryProvider:
+    path: generated/cache/config
+  V\Siarko\ConfigCache\Default\Cache:
+    cacheDirectory: V\Siarko\ConfigCache\Default\CacheDirectoryProvider
+  # Configure cached config provider
+  V\Siarko\ConfigCache\Default\CachedConfigProvider:
+    configProvider: V\Siarko\ConfigCache\Default\ConfigProvider
+    cache: V\Siarko\CacheFiles\Default\Cache
+  # Add cache to the cache manager
+  \Siarko\CacheFiles\Manager:
+    caches:
+      config: V\Siarko\ConfigCache\Default\Cache
