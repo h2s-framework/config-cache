@@ -1,5 +1,5 @@
 {
-  "name": "siarkowodor/config-cache",
+  "name": "h2sf/config-cache",
   "description": "Library for caching configs",
   "minimum-stability": "stable",
   "license": "proprietary",
@@ -12,8 +12,8 @@
     }
   ],
   "require": {
-    "siarkowodor/config-files": "*",
-    "siarkowodor/cache-files": "*"
+    "h2sf/config-files": "*",
+    "h2sf/cache-files": "*"
   },
   "autoload": {
     "psr-4": {
