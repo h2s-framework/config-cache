@@ -3,7 +3,6 @@
   "description": "Library for caching configs",
   "minimum-stability": "stable",
   "license": "proprietary",
-  "version": "0.1.0",
   "type": "library",
   "authors": [
     {
@@ -12,8 +11,8 @@
     }
   ],
   "require": {
-    "h2sf/config-files": "*",
-    "h2sf/cache-files": "*"
+    "h2sf/config-files": "^0.3",
+    "h2sf/cache-files": "^0.3"
   },
   "autoload": {
     "psr-4": {
